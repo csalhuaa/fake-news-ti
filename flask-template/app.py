@@ -66,11 +66,14 @@ def main():
     
     print(f"🚀 Iniciando FactCheck AI en modo {config_name}")
     print(f"📊 Modelos disponibles: SVM, Naive Bayes, SaBERT")
-    print(f"🌐 Servidor iniciado en http://localhost:5000")
+    
+    # Usar el puerto de la variable de entorno PORT (Render usa 10000 por defecto)
+    port = int(os.environ.get('PORT', 5000))
+    print(f"🌐 Servidor iniciado en http://0.0.0.0:{port}")
     
     app.run(debug=app.config.get('DEBUG', True), 
             host="0.0.0.0", 
-            port=5000)
+            port=port)
 
 if __name__ == "__main__":
     main()
