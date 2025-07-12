@@ -1,0 +1,29 @@
+__pycache__/
+*.pyc
+*.pkl
+*.csv
+*.json
+.env
+.DS_Store
+.idea/
+.vscode/
+venv/
+.ipynb_checkpoints/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+.pytest_cache/
+
+# Flask stuff:
+instance/
+.webassets-cache

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Registrarse | FactCheck AI{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 class="auth-title">
+                <i class="fas fa-user-plus"></i>
+                Crear Cuenta
+            </h2>
+            <p class="auth-subtitle">
+                Únete a FactCheck AI para acceder a funciones avanzadas
+            </p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="username" class="form-label">
+                    <i class="fas fa-user"></i> Usuario
+                </label>
+                <input type="text" id="username" name="username" class="form-input" required
+                       placeholder="Ingresa tu nombre de usuario">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i> Email
+                </label>
+                <input type="email" id="email" name="email" class="form-input" required
+                       placeholder="tu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">
+                    <i class="fas fa-lock"></i> Contraseña
+                </label>
+                <input type="password" id="password" name="password" class="form-input" required
+                       placeholder="Mínimo 6 caracteres">
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password" class="form-label">
+                    <i class="fas fa-lock"></i> Confirmar Contraseña
+                </label>
+                <input type="password" id="confirm_password" name="confirm_password" class="form-input" required
+                       placeholder="Repite tu contraseña">
+            </div>
+
+            <button type="submit" class="auth-btn">
+                <i class="fas fa-user-plus"></i>
+                Crear Cuenta
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>¿Ya tienes cuenta? 
+                <a href="{{ url_for('auth.login') }}" class="auth-link">Inicia sesión aquí</a>
+            </p>
+        </div>
+
+        <div class="benefits-section">
+            <h3 class="benefits-title">
+                <i class="fas fa-star"></i>
+                Beneficios de registrarse
+            </h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-history"></i>
+                    <span>Historial de análisis</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-crown"></i>
+                    <span>Acceso a modelo SABERT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

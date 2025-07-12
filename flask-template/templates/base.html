@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FactCheck AI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="{{ url_for('main.home') }}" class="logo">
+                <i class="fas fa-shield-alt"></i>
+                FactCheck AI
+            </a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('main.home') }}#home">Inicio</a></li>
+                <li><a href="{{ url_for('main.about') }}">Acerca de</a></li>
+                
+                {% if current_user.is_authenticated %}
+                    <!-- Usuario logueado -->
+                    <li class="user-menu">
+                        <a href="{{ url_for('main.profile') }}" class="user-link">
+                            <i class="fas fa-user"></i>
+                            {{ current_user.username }}
+                            {% if current_user.is_premium %}
+                                <span class="premium-badge">PREMIUM</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li><a href="{{ url_for('auth.logout') }}" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Cerrar Sesión
+                    </a></li>
+                {% else %}
+                    <!-- Usuario no logueado -->
+                    <li><a href="{{ url_for('auth.login') }}" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Iniciar Sesión
+                    </a></li>
+                    <li><a href="{{ url_for('auth.register') }}" class="register-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Registrarse
+                    </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        <i class="fas fa-{{ 'check-circle' if category == 'success' else 'exclamation-triangle' }}"></i>
+                        {{ message }}
+                        <button class="flash-close" onclick="this.parentElement.style.display='none'">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Contenido principal -->
+    <main class="main-container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 FactCheck AI - Proyecto TI</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

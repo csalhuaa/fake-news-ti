@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Inicio | FactCheck AI{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" id="home">
+    <h1 class="hero-title">Detector de Fake News</h1>
+    <p class="hero-subtitle">
+        Utiliza inteligencia artificial avanzada para analizar y verificar la veracidad de noticias políticas en español
+    </p>
+</section>
+
+<!-- Analysis Form -->
+<div class="card">
+    <form id="analysisForm" class="form-section">
+        <div class="form-group">
+            <label for="title" class="form-label">
+                <i class="fas fa-newspaper"></i> Título de la noticia
+            </label>
+            <input type="text" id="title" name="title" class="form-input" required
+                   placeholder="Ingresa el título de la noticia a analizar...">
+        </div>
+
+        <div class="form-group">
+            <label for="description" class="form-label">
+                <i class="fas fa-align-left"></i> Contenido de la noticia
+            </label>
+            <textarea id="description" name="description" class="form-input form-textarea" required
+                      placeholder="Pega aquí el contenido completo de la noticia..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="model" class="form-label">
+                <i class="fas fa-brain"></i> Modelo de IA
+                <i class="fas fa-question-circle" style="color: #667eea; margin-left: 0.5rem; cursor: help;" 
+                   title="SVM: Rápido y eficiente para textos cortos. Naive Bayes: Bueno para análisis general. SaBERT: Modelo avanzado basado en BERT (requiere login)."></i>
+            </label>
+            <select id="model" name="model" class="form-input form-select">
+                <option value="svm">Support Vector Machine (SVM)</option>
+                <option value="nb">Naive Bayes</option>
+                <option value="both">Análisis con ambos modelos</option>
+                {% if current_user.is_authenticated %}
+                    <option value="sabert">SaBERT (modelo avanzado)</option>
+                {% endif %}
+            </select>
+            {% if not current_user.is_authenticated %}
+                <small style="color: #718096; font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+                    <i class="fas fa-info-circle"></i>
+                    <a href="{{ url_for('auth.login') }}" style="color: #667eea;">Inicia sesión</a> para acceder al modelo SaBERT avanzado
+                </small>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="analyze-btn" id="analyzeBtn">
+                <i class="fas fa-search"></i> Analizar Noticia
+            </button>
+            <button type="button" class="clear-btn" id="clearBtn" style="margin-top: 1rem;">
+                <i class="fas fa-eraser"></i> Limpiar Formulario
+            </button>
+        </div>
+    </form>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Analizando noticia con IA...</p>
+    </div>
+
+    <div id="results" style="display: none;"></div>
+</div>
+
+{% endblock %}

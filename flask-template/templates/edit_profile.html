@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Editar Perfil | FactCheck AI{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2 class="auth-title">
+                <i class="fas fa-user-edit"></i>
+                Editar Perfil
+            </h2>
+            <p class="auth-subtitle">
+                Actualiza tu información personal
+            </p>
+        </div>
+
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="username" class="form-label">
+                    <i class="fas fa-user"></i> Nombre de Usuario
+                </label>
+                <input type="text" id="username" name="username" class="form-input" required
+                       value="{{ current_user.username }}" placeholder="Ingresa tu nombre de usuario">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i> Email
+                </label>
+                <input type="email" id="email" name="email" class="form-input" required
+                       value="{{ current_user.email }}" placeholder="tu@email.com">
+            </div>
+
+            <div class="form-section" style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+                <h3 style="color: #2d3748; margin-bottom: 1rem; font-size: 1.1rem;">
+                    <i class="fas fa-lock"></i> Cambiar Contraseña (Opcional)
+                </h3>
+                
+                <div class="form-group">
+                    <label for="current_password" class="form-label">
+                        <i class="fas fa-key"></i> Contraseña Actual
+                    </label>
+                    <input type="password" id="current_password" name="current_password" class="form-input"
+                           placeholder="Ingresa tu contraseña actual (solo si quieres cambiarla)">
+                </div>
+
+                <div class="form-group">
+                    <label for="new_password" class="form-label">
+                        <i class="fas fa-lock"></i> Nueva Contraseña
+                    </label>
+                    <input type="password" id="new_password" name="new_password" class="form-input"
+                           placeholder="Mínimo 6 caracteres">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">
+                        <i class="fas fa-lock"></i> Confirmar Nueva Contraseña
+                    </label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-input"
+                           placeholder="Repite la nueva contraseña">
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 2rem;">
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-save"></i>
+                    Guardar Cambios
+                </button>
+            </div>
+        </form>
+
+        <div class="auth-footer">
+            <a href="{{ url_for('main.profile') }}" class="auth-link">
+                <i class="fas fa-arrow-left"></i>
+                Volver al Perfil
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,42 @@
+<!-- templates/about.html -->
+{% extends 'base.html' %}
+
+{% block title %}Acerca de - FactCheck AI{% endblock %}
+
+{% block content %}
+<section class="about-card" id="about">
+    <h2 class="about-title">
+        <i class="fas fa-info-circle"></i>
+        Acerca del Proyecto
+    </h2>
+    <p style="text-align: center; color: #718096; font-size: 1.1rem; margin-bottom: 2rem;">
+        Este detector utiliza algoritmos de machine learning entrenados con miles de noticias reales y falsas 
+        para identificar patrones y características que pueden indicar desinformación.<br>
+        <strong>Además incluye el modelo avanzado <a href="https://huggingface.co/VerificadoProfesional/SaBERT-Spanish-Fake-News" target="_blank" rel="noopener">SaBERT-Spanish-Fake-News</a>, basado en BERT y especializado en la detección de fake news en español.</strong>
+    </p>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <div class="feature-icon">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="feature-title">IA Avanzada</h3>
+            <p class="feature-desc">Modelos SVM, Naive Bayes y SaBERT entrenados con datos reales</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">
+                <i class="fas fa-language"></i>
+            </div>
+            <h3 class="feature-title">Español Nativo</h3>
+            <p class="feature-desc">Optimizado para noticias políticas en español</p>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="feature-title">Alta Precisión</h3>
+            <p class="feature-desc">Análisis con múltiples modelos, incluyendo SaBERT, para mayor confiabilidad</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
