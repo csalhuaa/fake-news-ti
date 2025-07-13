@@ -70,6 +70,7 @@ flask-template/
 
 5. **Ejecutar la aplicación**
    ```bash
+   cd flask-template/
    python app.py
    ```
 
